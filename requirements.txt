@@ -1,0 +1,11 @@
+numpy
+argparse
+matplotlib
+aiohttp
+scipy
+dataclasses
+loguru
+uuid
+transformers
+pytest
+pathlib
