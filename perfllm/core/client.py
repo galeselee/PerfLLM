@@ -11,7 +11,7 @@ import uuid
 
 from loguru import logger
 from datetime import datetime
-from hillm.config import ClientConfig
+from perfllm.config import ClientConfig
 from .session import Session
 
 class Client(object):

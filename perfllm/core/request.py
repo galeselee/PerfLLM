@@ -1,7 +1,7 @@
 from .database import Database
-from hillm.config import RequestConfig
+from perfllm.config import RequestConfig
 from loguru import logger
-from hillm.config import RequestConfig
+from perfllm.config import RequestConfig
 
 import aiohttp
 import asyncio

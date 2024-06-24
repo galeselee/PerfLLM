@@ -13,12 +13,12 @@ class DBConfig:
     @classmethod
     def from_cli_args(cls, args):
         attrs = [attr.name for attr in dataclasses.fields(cls)]
-        return cls(**{attr: getattr(args,"db_"+attr) for attr in attrs})
+        return cls(**{attr: getattr(args, attr) for attr in attrs})
 
     @classmethod
     def from_json_args(cls, args):
         attrs = [attr.name for attr in dataclasses.fields(cls)]
-        return cls(**{attr: args.get("db_"+attr, getattr(cls, attr)) for attr in attrs})
+        return cls(**{attr: args.get(attr, getattr(cls, attr)) for attr in attrs})
         
     def to_dict(self):
         return dict(

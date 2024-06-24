@@ -7,5 +7,5 @@ setup(name='PerfLLM',
       author='Zeyu Li',
       author_email='zeyuli0123@icloud.com',
       license='MIT',
-      packages=['PerfLLM'],
+      packages=['perfllm'],
       zip_safe=False)

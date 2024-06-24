@@ -1,6 +1,6 @@
 from .client import Client
 from .database import Database
-from hillm.config import SuiteConfig
+from perfllm.config import SuiteConfig
 
 import sys
 import asyncio

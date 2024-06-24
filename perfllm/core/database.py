@@ -3,7 +3,7 @@ import random
 
 from pathlib import Path
 from transformers import AutoTokenizer
-from hillm.config import DBConfig
+from perfllm.config import DBConfig
 from typing import Optional
 
 class Database(object):

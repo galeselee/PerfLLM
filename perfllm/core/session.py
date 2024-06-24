@@ -4,7 +4,7 @@ import copy
 import os
 import uuid
 from loguru import logger
-from hillm.config import SessionConfig
+from perfllm.config import SessionConfig
 from .request import Request
 
 class Session:

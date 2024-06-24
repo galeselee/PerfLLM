@@ -9,7 +9,7 @@ class RequestConfig(object):
                  database,
                  sample_prompt=None, 
                  server_ip:str="0.0.0.0",
-                 server_post:int=8000,
+                 server_port:int=8000,
                  server_ignore_eos:bool=False,
                  server_max_token:int=8192,
                  server_stream:bool=True,
@@ -18,7 +18,7 @@ class RequestConfig(object):
         self.database = database
         self.sample_prompt = sample_prompt
         self.server_ip = server_ip
-        self.server_port = server_post
+        self.server_port = server_port
         self.server_ignore_eos = server_ignore_eos
         self.server_max_token = server_max_token
         self.server_stream = server_stream
