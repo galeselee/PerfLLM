@@ -20,13 +20,14 @@ class Suite(object):
                  log_dir:str=None,
                  client_configs=None,
                  client_config_probability=None):
-        self.client_register = client_register
         self.limit_client_num = limit_client_num
         self.max_client_num = max_client_num
-        self.log_dir = log_dir
         self.client_configs = client_configs
         self.client_config_probability = client_config_probability
         
+        self.log_dir = log_dir
+
+        self.client_register = client_register
         if client_register == None:
             self._client_register = self.default_client_register
 
@@ -40,7 +41,7 @@ class Suite(object):
     def default_client_register(self):
         return np.random.exponential(10)
 
-    async def run(self):
+    async def create_client(self):
         assert len(self.client_configs) != 0
 
         if self.limit_client_num == True:
@@ -52,7 +53,7 @@ class Suite(object):
                 _new_client_wait_time = self.client_register()
                 await asyncio.sleep(_new_client_wait_time)
                 logger.info("Generate a client")
-                asyncio.create_task(_client.run())
+                yield asyncio.create_task(_client.run())
                 client_count += 1
         else:
             while True:
@@ -62,8 +63,17 @@ class Suite(object):
                 _new_client_wait_time = self.client_register()
                 await asyncio.sleep(_new_client_wait_time)
                 logger.info("Generate a client")
-                asyncio.create_task(_client.run())
-        await asyncio.sleep(sys.maxsize)
+                yield asyncio.create_task(_client.run())
+
+    async def timeout_context_management(self):
+        tasks = []
+        try:
+            async with asyncio.timeout(self.timeout):
+                async for task in self.create_client():
+                    tasks.append(task)
+        except TimeoutError:
+            
+
 
     def benchmark(self):
         asyncio.run(self.run())
